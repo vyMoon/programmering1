@@ -190,7 +190,7 @@ def gradeCounter():
 
   while True:
     pointsCandidate = requestNumber('How much pointss have you got? (in range between 0 and 100)')
-    print(pointsCandidate > 100)
+
     if 0 > pointsCandidate or pointsCandidate > 100:
       print('Possible amount of points should be between 0 and 100. Try again')
       continue
