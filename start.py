@@ -1,272 +1,123 @@
-# # def printSquareInformation(height, width, units = 'centimeter'):
-# #   square = height * width
-# #   sidesLength = (height + width) * 2
-# #   print(f'En rektangel har bredden {width} {units} och längden {height} {units}')
-# #   print(f'Omrketsen är {sidesLength} {units}.')
-# #   print(f'Arean är {square} kvadrat{units}.')
-# #   print('\n')
+arr = ['Ford', 'Volvo', 'BMW']
 
-# # printSquareInformation(4,5)
-# # printSquareInformation(2, 5, 'meter')
+# print(arr)
+# print(type(arr))
+# print(type(arr) == list)
+# print(len(arr))
 
+# arr[2] = 'Saab'
+# arr.insert(10, 'Random car')
+# # arr.remove('Saab')
+# print(arr)
 
-# # def printCircleInformation(radius, units = 'centimeter'):
-# #   pi = 3.14
-# #   square = pi * radius ** 2
-# #   circumference = 2 * pi * radius
-# #   print(f'Radius är {radius} {units}')
-# #   print(f'Arean är {square} kvadrat{units}.')
-# #   print(f'Omrketsen är {circumference} {units}.')
-# #   print('\n')
+# print(arr.pop(2))
+# print(arr)
 
-# # printCircleInformation(6)
-# # printCircleInformation(5, 'meter')
+# arr.extend('abc')
+# arr.extend(['x', 'y', 'z'])
+# print(arr)
 
+# # print(max(arr))
+# # print(sum(arr))
 
-# # def VATcounter(prise, vat, currency = 'Kr'):
-# #   if (not isinstance(vat, int) and not isinstance(vat,float)):
-# #     print('Vat must be a int or float')
-# #     return
+# print(arr.remove('a'))
+# print(arr)
+
+# cities = [
+#   'Stockholm', 'Sundsvall', "Göteborg"
+# ]
+# cities.append('Motala')
+# cities.insert(2, 'Västerås')
+# cities.pop(0)
+# cities.remove('Motala')
+# cities[cities.index('Västerås')] = 'Eskilstuna'
+# cities.clear()
+
+# print(cities)
+
+# arr = ['Orange', 'Apple', 'Banana']
+
+# def findEl(el, arr):
+#   for e in arr:
+#     if e == el:
+#       return f'{el} is exist'
+#   return f'{el} not exist'
   
-# #   Vatpercents = vat / 100 if isinstance(vat, int) else vat
-# #   vatAmount = prise * Vatpercents
-# #   print(f'Priset incluseve moms är {vatAmount + prise} {currency}')
-
-# # VATcounter(100, "5")
-# # VATcounter(100, 0.05, 'USD')
+# print(findEl('Orange', arr))
 
 
 
-# # def triangleInformation(base, hight, units = 'centimeter'):
-# #   area = (base * hight) / 2
-# #   print(f'En triangel med basen {base} {units} och häjden {hight} {units} har arean {area} {units}')
+# subjects = [
+#   'matte', 'datorteknik', "nätverksteknik"
+# ]
 
+# print(1, len(subjects))
 
-# # triangleInformation(5, 10)
+# subjects.append('programmering')
+# print(2, subjects)
 
-# # base = int(input('Skriv basen'))
-# # hight = int(input('skriv höjden'))
+# subjects.insert(1, 'natverksteknologier')
+# print(3, subjects)
 
-# # triangleInformation(base, hight)
+# subjects.pop(2)
+# print(4, subjects)
 
+# subjects.remove('matte')
+# print(5, subjects)
 
-# # name = str(input('Jag baa undrar vad hetter du '))
-# # print(name)
+# print(6)
+# for i in subjects:
+#   print(i)
 
-# # print(
-# #   str(input('Jag baa undrar vad hetter du '))
-# # )
-
-# # daysInYear = 365
-# # hoursInDay = 24
-# # minutesInHour = 60
-# # secondsInMinute = 60
-
-# # secondsInYear = daysInYear * hoursInDay * minutesInHour * secondsInMinute
-# # secondsIn5Years = secondsInYear * 5
-# # birthsIn5Year = secondsIn5Years // 7
-
-# # print(birthsIn5Year )
+# subjects.clear()
+# print(7, subjects)
 
 
 
-# def simpleLoop(repeats = 5, text = 'Hej'):
-#   for n in range(-1, repeats):
-#     print(text, n)
 
+# def kassa(): 
+#   products = []
+#   while True:
+#     next = input('What is the nex product? ')
 
-# # simpleLoop()
+#     try:
+#       num = int(next)
+#       if num == 0:
+#           print(f'The amount of products is {len(products)}')
+#           return
+#       print(f'{num} is not a correct product. It is not accepted.')
+#     except ValueError:
+#        products.append(next)
 
+# kassa()
 
-# def namePrinter(name = 'Name', surname = 'Surname', nameRepeats = 2, surnameRepeats = 3):
-#   maxRepeats = nameRepeats if nameRepeats > surnameRepeats else surnameRepeats
+import random
+from tools import requestNumber
 
-#   for n in range(maxRepeats):
-#     if (n < nameRepeats):
-#       print(name)
-#     if (n < surnameRepeats):
-#       print(surname)
+def guessNumber():
+  secret = random.randint(1, 100)
+  print('I have a secret number in range from 1 to 100.')
 
-
-# # namePrinter()
-
-# def summer():
-#   x = int(input('Give a number '))
-#   amount = 0
-#   for n in range(1, x + 1):
-#     amount = amount + n
-#   print(amount)
-
-# # summer()
-
-
-# # for n in range(1, 6):
-# #   print(f'Jag fyller {n} år!')
-
-# # a = range(3)
-# # print(a[2])
-
-# # for n in range(0, 17, 3):
-# #   print(n)
-
-# # from types import SimpleNamespace
-
-# # o = SimpleNamespace(name = 'name', surname = 'surname')
-# # o.city = 'city'
-
-# # print(o)
-
-# def multiplicationTable():
-#   base = int(input('give a multiplication base '))
-#   first = int(input('from '))
-#   last = int(input('To '))
-#   for n in range(first, last + 1):
-#     result = n * base
-#     print(f'{n} x {base} = {result}')
-
-# # multiplicationTable()
-
-
-# # for base in range(1, 11):
-# #   print(f'\nTable base = {base}')
-# #   for n in range(1, 11):
-# #     result = base * n
-# #     print(f'{n} x {base} = {result}')
-
-# # for n in range(2):
-# #   tal = int(input('give a number '))
-# #   # print(tal)
-# # print(tal)
-
-# # amount = int(input('give a number of how many times would you like to add '))
-# # sum = 0
-
-# # for n in range(amount):
-# #   tal = int(input(f'give number {n + 1} '))
-# #   sum = sum + tal
-# #   print(n, sum, tal)
-
-# # print(f'sum is {sum}')
-
-
-# def simpleIf(num):
-#   if num > 0:
-#     print(f'{num} is a positive number')
-#   elif num < 0:
-#     print(f'{num} is a negative number')
-#   else:
-#     print(f'it feels like {num} is 0')
-
-
-
-# # simpleIf(1)
-# # simpleIf(0)
-# # simpleIf(-1)
-
-# # age = int(input('How old are you?'))
-# # dose = 0
-# # if age >= 18:
-# #   dose = 750
-# # else:
-# #   dose = 500
-
-# # print(f'So you should take {dose} mg')
-
-# # def doseDefiner():
-# #   answer = input('Are you a child? (Y/N)')
-# #   # dose = 0
-
-# #   if answer == 'Y':
-# #     dose = 500
-# #   elif answer == "N" :
-# #     dose = 750
-# #   else:
-# #     print('It si not possible to define the dose yse only Y or N as answer')
-# #     return
-
-# #   print(f'So you should take {dose} mg')
-
-# # doseDefiner()
-
-def getWeight():
-  weight = 0
-  while weight < 1:
-    try:
-      weight = int(input('What is the patient\'s weight'))
-      if weight >= 0:
-        print('weight is incorrect, try one more time.')
-        continue
-    except ValueError:
-      print('Weight should be a number')
-      weight = 0
-      continue
-
-  return weight
-
-def doseDefinerByWeight():
-  weight = getWeight()
-  dose = 0
-  
-  if weight < 20:
-    dose = 500
-  elif 20 <= weight < 40:
-    dose =750
-  elif 40 <= weight < 60:
-    dose = 1000
-  else:
-    dose = 1500
-
-  print(f'the dose should be {dose} mg per day.')
-
-# doseDefinerByWeight()
-
-
-def isPositiveNumber(n):
-  return n > 0
-
-def requestNumber(text = 'give me a number', onlyPositive = False) -> int:
   while True:
-    n = input(f'{text} ')
+    input = requestNumber('Guess the number', True)
 
-    try:
-      n = int(n)
+    if input == secret:
+      print(f'Correct the secret number equals {input}')
+      break
+    else:
+      comparison = 'more' if input > secret else 'less'
+      print(f'{input} is not a correct, it is {comparison} than the secret number')
 
-      if onlyPositive and not isPositiveNumber(n):
-        print(f'{n} less or equal 0, this time I need a positive number')
-        continue
+# guessNumber()
 
-      return n
-    
-    except ValueError:
-      print(f'I expect to have a number! {n} is not a number.')
+adj = ['red', 'big', 'tasty']
+friuts = ['apple', 'banana', 'cherry']
 
-def defineGrade():
-  points = requestNumber('How much points have you got?', True)
-  text = 'You grade is:'
+# for prop in adj:
+#   for frut in friuts:
+#     print(f'{prop} {frut}')
 
-  if points < 50:
-    text = 'You have not passed'
-  elif 50 <= points <= 59:
-    text = f'{text} E'
-  elif 60 <= points <= 69:
-    text = f'{text} D'
-  elif 70 <= points <= 79:
-    text = f'{text} C'
-  elif 80 <= points <= 89:
-    text = f'{text} B'
-  elif 90 <= points <= 100:
-    text = f'{text} A'
-  else:
-    text = "It is not possible to have more than 100 points"
+numbers = [1,2,3]
 
-  print(text)
+print(f'{'present' if 2 in numbers else 'is not present'}')
 
-
-number = requestNumber('Write a number')
-
-if number > 40:
-  print('your number is grater than 40')
-elif number == 40:
-  print('the number is 40')
-else:
-  print('the number is less than 40')

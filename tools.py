@@ -1,7 +1,7 @@
 def isPositiveNumber(n) -> bool:
   return n > 0
 
-def requestNumber(text = 'give me a number', onlyPositive = False) -> int:
+def requestNumber(text = 'give me a number', onlyPositive = False):
   while True:
     n = input(f'{text} ')
 
@@ -9,7 +9,7 @@ def requestNumber(text = 'give me a number', onlyPositive = False) -> int:
       n = int(n)
 
       if onlyPositive and not isPositiveNumber(n):
-        print(f'{n} less or equal 0, this time I need a positive number')
+        print(f'{n} less or equal 0, but this time I need a positive number')
         continue
 
       return n
@@ -17,7 +17,7 @@ def requestNumber(text = 'give me a number', onlyPositive = False) -> int:
     except ValueError:
       print(f'I expect to have a number! {n} is not a number.')
 
-def getOrdinalNumber(num) -> str:
+def getOrdinalNumber(num):
   lastDigit = int(str(num)[-1])
   postfix = ''
 

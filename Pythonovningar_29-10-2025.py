@@ -55,7 +55,6 @@ def numberTypesCounter():
   amountPositive = 0
 
   for i in nums:
-    print(i > 0, i < 0,)
     if i > 0:
       amountPositive += 1
     elif i < 0:
@@ -185,20 +184,18 @@ def getGrade(points):
   
   return False
 
-def gradeCounter():
-  points = 0
-
+def getPoints():
   while True:
-    pointsCandidate = requestNumber('How much pointss have you got? (in range between 0 and 100)')
+    points = requestNumber('How much pointss have you got? (in range between 0 and 100)')
 
-    if 0 > pointsCandidate or pointsCandidate > 100:
+    if 0 > points or points > 100:
       print('Possible amount of points should be between 0 and 100. Try again')
       continue
 
-    points = pointsCandidate
-    print (points)
-    break
+    return points
 
+def gradeCounter():
+  points = getPoints()
   grade = getGrade(points)
 
   if grade:
@@ -206,7 +203,7 @@ def gradeCounter():
   else:
     print('Error. Incorrect amount of points')
 
-# gradeCounter()
+gradeCounter()
 
 # Beskrivning: Skapa ett program som visar en meny med tre alternativ (Hälsa, Räkna till 10,
 # Avsluta). Programmet ska utföra vald funktion.
@@ -261,7 +258,7 @@ def menu():
     elif chosen == menu['count from 1 to 10']:
       countTo10()
     elif chosen == menu['close']:
-      print('The end of the prgramme')
+      print('The end of the programme')
       return
 
 # menu()
@@ -273,7 +270,6 @@ def getNumString(nums):
   text = ''
 
   for i in nums:
-    add =''
     if text == '':
       text += f'{i}'
     else:
