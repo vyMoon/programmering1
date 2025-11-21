@@ -95,4 +95,339 @@ def speedComparison():
   else:
     print('Du hller hastighetsgränsen')
 
-speedComparison()
+# speedComparison()
+
+
+from tools import requestNumber
+import random
+
+# arr = ['Ford', 'Volvo', 'BMW']
+
+# print(arr)
+# print(type(arr))
+# print(type(arr) == list)
+# print(len(arr))
+
+# arr[2] = 'Saab'
+# arr.insert(10, 'Random car')
+# # arr.remove('Saab')
+# print(arr)
+
+# print(arr.pop(2))
+# print(arr)
+
+# arr.extend('abc')
+# arr.extend(['x', 'y', 'z'])
+# print(arr)
+
+# # print(max(arr))
+# # print(sum(arr))
+
+# print(arr.remove('a'))
+# print(arr)
+
+# cities = [
+#   'Stockholm', 'Sundsvall', "Göteborg"
+# ]
+# cities.append('Motala')
+# cities.insert(2, 'Västerås')
+# cities.pop(0)
+# cities.remove('Motala')
+# cities[cities.index('Västerås')] = 'Eskilstuna'
+# cities.clear()
+
+# print(cities)
+
+# arr = ['Orange', 'Apple', 'Banana']
+
+# def findEl(el, arr):
+#   for e in arr:
+#     if e == el:
+#       return f'{el} is exist'
+#   return f'{el} not exist'
+  
+# print(findEl('Orange', arr))
+
+
+
+# subjects = [
+#   'matte', 'datorteknik', "nätverksteknik"
+# ]
+
+# print(1, len(subjects))
+
+# subjects.append('programmering')
+# print(2, subjects)
+
+# subjects.insert(1, 'natverksteknologier')
+# print(3, subjects)
+
+# subjects.pop(2)
+# print(4, subjects)
+
+# subjects.remove('matte')
+# print(5, subjects)
+
+# print(6)
+# for i in subjects:
+#   print(i)
+
+# subjects.clear()
+# print(7, subjects)
+
+
+
+
+# def kassa(): 
+#   products = []
+#   while True:
+#     next = input('What is the nex product? ')
+
+#     try:
+#       num = int(next)
+#       if num == 0:
+#           print(f'The amount of products is {len(products)}')
+#           return
+#       print(f'{num} is not a correct product. It is not accepted.')
+#     except ValueError:
+#        products.append(next)
+
+# kassa()
+
+
+
+def guessNumber():
+  secret = random.randint(1, 100)
+  print('I have a secret number in range from 1 to 100.')
+
+  while True:
+    input = requestNumber('Guess the number', True)
+
+    if input == secret:
+      print(f'Correct the secret number equals {input}')
+      break
+    else:
+      comparison = 'more' if input > secret else 'less'
+      print(f'{input} is not a correct, it is {comparison} than the secret number')
+
+# guessNumber()
+
+adj = ['red', 'big', 'tasty']
+friuts = ['apple', 'banana', 'cherry']
+
+# for prop in adj:
+#   for frut in friuts:
+#     print(f'{prop} {frut}')
+
+# numbers = [1,2,3]
+
+# print(f'{'number found in the list' if 24 in numbers else 'number does not exist in the list'}')
+
+# users = ['user1', 'user2', 'user3', 'user4', 'user5']
+
+# def findUserIndex(user):
+#   for i in range(len(users)):
+#     if users[i] == user:
+#       return i
+#   return False
+    
+
+# index = findUserIndex('user1')
+
+
+# for user in users:
+#   if  index:
+#     if user == users[index]:
+#       continue
+#   print(user)
+
+menu = {
+  'add': 1,
+  'remove': 2,
+  'stop': 3
+}
+
+def choseAction(menu):
+  availableOptions = []
+  for key, value in menu.items():
+    print(f'{key} - {value}')
+    availableOptions.append(value)
+  while True:
+    chosen = requestNumber('Which action, you chose. chose a number above', True)
+    if chosen in availableOptions:
+      return chosen
+    else:
+      print(f'Option {chosen} does not exist, try again')
+
+def append(arr):
+  arr.append(
+    input('What should I add? ')
+  )
+
+def remove(arr):
+  if len(arr) == 0:
+    print('In the list there is nothing')
+    return
+  
+  while True:
+    el = input('what should I remove? ')
+    if el in arr:
+      arr.remove(el)
+      print(f'{el} removed')
+      return
+    else:
+      print(f'{el} does not exist in list, try again')
+
+def listEditor():
+  arr = []
+  while True:
+    chosen = choseAction(menu)
+    print(chosen)
+
+    if chosen == menu['add']:
+      append(arr)
+    elif chosen == menu['remove']:
+      remove(arr)
+    elif chosen == menu['stop']:
+      return
+    
+    print(arr)
+# listEditor()
+
+# name = input('Provide your name ')
+# surname = input('Provide your surname ')
+
+# for i in range(20):
+#   if i < 15:
+#     print(name)
+#   print(surname)
+
+# cities = ['Stockholm', 'Sundsvall', 'Göteborg']
+
+# cities.append('Motala')
+# print(1, cities)
+
+# vesterosIndex = 2
+# cities.insert(vesterosIndex, 'Vestrås')
+# print(2, cities)
+
+# cities.pop(0)
+# print(3, cities)
+
+# cities.remove('Motala')
+# print(4, cities)
+
+# cities.clear()
+# print(1, cities)
+# print(len(cities))
+
+
+fruits = ['Apple', 'Orange', 'Banana']
+
+def checkEl(el, arr):
+  for e in arr:
+    if e == el:
+      print(f'{el} exist in listan')
+      return
+  print(f'{el} does not exist')
+
+# checkEl('Apple', fruits)
+
+def getIndex(el, arr):
+  for i in range(len(arr)):
+    if el == arr[i]:
+      return i
+  return False
+
+def removeListEl(el, arr):
+  index = getIndex(el, arr)
+  if not(index is False):
+    arr.remove(el)
+  print(f'Error, there is no {el} in the list')
+
+
+# subjects = ['matte', 'datortecnik', 'nätverksteknik']
+
+# print(1, len(subjects))
+
+# subjects.append('programmering')
+# print(2, subjects)
+
+# subjects.insert(1, 'natverksteknologier')
+# print(3, subjects)
+
+# subjects.pop(2)
+# print(4, subjects)
+
+# elToRemove = 'matte'
+# removeListEl(elToRemove, subjects)
+# print(5, subjects)
+
+# print(5)
+# for i in range(len(subjects)):
+#   print(subjects[i])
+
+# subjects.clear()
+# print(6, subjects, f'Subject\'s length is s{len(subjects)}')
+
+# arr = [1,2,3,4,5,6]
+
+# print(arr[3:5])
+
+
+
+# def vowelCounter(word):
+#   vowel = 'aeiouyåöä'
+#   counter = 0
+#   for letter in word.lower():
+#     if letter in vowel:
+#       counter += 1
+  
+#   return counter
+
+# print(vowelCounter('realisationsvinstbeskattning'))
+
+# Hitta det största talet
+# Facit: Byt `>` till `<` för att hitta det minsta talet.
+
+def getBiggest(arr):
+  if len(arr) == 0:
+    raise ValueError('The list is empty')
+  
+  if len(arr) == 1:
+    return arr [0]
+
+  res = arr[0]
+
+  for index in range(1, len(arr)):
+    if arr[index] > res:
+      res = arr[index]
+  
+  return res
+  
+def getSmallest(arr):
+  if len(arr) == 0:
+    raise ValueError('The list is empty')
+  
+  if len(arr) == 1:
+    return arr [0]
+  
+  res = arr[0]
+
+  for index in range(1, len(arr)):
+    if res > arr[index]:
+      res = arr[index]
+  return res
+
+tal = [-40, 9, -1, 7, 3, 10]
+
+# print("Det största talet är:", getBiggest(tal))
+# print('The smallest is ', getSmallest(tal))
+
+num = [1, 5, -29, 86, 7, -8]
+
+# print(1, min(num))
+# print(2, max(num))
+# print(3, sum(num))
+# newArr = num[:]
+# print(4, newArr)

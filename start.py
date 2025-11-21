@@ -1,123 +1,96 @@
-arr = ['Ford', 'Volvo', 'BMW']
-
-# print(arr)
-# print(type(arr))
-# print(type(arr) == list)
-# print(len(arr))
-
-# arr[2] = 'Saab'
-# arr.insert(10, 'Random car')
-# # arr.remove('Saab')
-# print(arr)
-
-# print(arr.pop(2))
-# print(arr)
-
-# arr.extend('abc')
-# arr.extend(['x', 'y', 'z'])
-# print(arr)
-
-# # print(max(arr))
-# # print(sum(arr))
-
-# print(arr.remove('a'))
-# print(arr)
-
-# cities = [
-#   'Stockholm', 'Sundsvall', "Göteborg"
-# ]
-# cities.append('Motala')
-# cities.insert(2, 'Västerås')
-# cities.pop(0)
-# cities.remove('Motala')
-# cities[cities.index('Västerås')] = 'Eskilstuna'
-# cities.clear()
-
-# print(cities)
-
-# arr = ['Orange', 'Apple', 'Banana']
-
-# def findEl(el, arr):
-#   for e in arr:
-#     if e == el:
-#       return f'{el} is exist'
-#   return f'{el} not exist'
-  
-# print(findEl('Orange', arr))
-
-
-
-# subjects = [
-#   'matte', 'datorteknik', "nätverksteknik"
-# ]
-
-# print(1, len(subjects))
-
-# subjects.append('programmering')
-# print(2, subjects)
-
-# subjects.insert(1, 'natverksteknologier')
-# print(3, subjects)
-
-# subjects.pop(2)
-# print(4, subjects)
-
-# subjects.remove('matte')
-# print(5, subjects)
-
-# print(6)
-# for i in subjects:
-#   print(i)
-
-# subjects.clear()
-# print(7, subjects)
-
-
-
-
-# def kassa(): 
-#   products = []
-#   while True:
-#     next = input('What is the nex product? ')
-
-#     try:
-#       num = int(next)
-#       if num == 0:
-#           print(f'The amount of products is {len(products)}')
-#           return
-#       print(f'{num} is not a correct product. It is not accepted.')
-#     except ValueError:
-#        products.append(next)
-
-# kassa()
-
-import random
 from tools import requestNumber
+import random
+import math
 
-def guessNumber():
-  secret = random.randint(1, 100)
-  print('I have a secret number in range from 1 to 100.')
+def getN(text, onlyPositive = False):
+  while True:
+    inp = input(f'{text} ')
+
+    try:
+      num = int(inp)
+      if onlyPositive and num <=0:
+        print('This time  I expect tot se only positive numbers. Try one more time')
+        continue
+
+      return num
+    except ValueError:
+      print(f'You should provide a number. {inp} is not a number')
+
+# print(math.pi)
+
+def getCircleArea(r):
+  return math.pi * (r * r)
+
+def getCircleLength(r):
+  return 2 * math.pi * r
+
+def circleCounter():
+  rad = requestNumber('Provide the length of the radius', True)
+  print(f' The area is {getCircleArea(rad)}')
+  print(f' The length of te circle is {getCircleArea(rad)}')
+
+# circleCounter()
+
+
+def frunc():
+  stopWord = 'stop'
+
+  print('Provide a number in order to process this number')
+  print(f'or provide the stop word: \'{stopWord}\'')
 
   while True:
-    input = requestNumber('Guess the number', True)
+    inp = input('What is the next ')
 
-    if input == secret:
-      print(f'Correct the secret number equals {input}')
-      break
-    else:
-      comparison = 'more' if input > secret else 'less'
-      print(f'{input} is not a correct, it is {comparison} than the secret number')
+    if inp == stopWord:
+      return
+    
+    try:
+      num = int(inp)
 
-# guessNumber()
+      if num > 20:
+        print(f'Square root of {num} is {math.sqrt(num)}')
+      else:
+        print(f'The square of {num} is {pow(num , 2)}')
 
-adj = ['red', 'big', 'tasty']
-friuts = ['apple', 'banana', 'cherry']
+    except ValueError:
+      print(f'In order to operate with the value I need a number. {inp} is not a number')
 
-# for prop in adj:
-#   for frut in friuts:
-#     print(f'{prop} {frut}')
+# frunc()
 
-numbers = [1,2,3]
+def add(num1, num2):
+  return num1 + num2
 
-print(f'{'present' if 2 in numbers else 'is not present'}')
+def substraction(minuend, subtrahend):
+  return minuend - subtrahend
 
+def multiplication(num1, num2):
+  return num1 * num2
+
+# print(add(2,3))
+# print(add(5,6))
+
+def getTriangleArea(base, hight):
+  return base * hight / 2
+
+# print(getTriangleArea(5, 7))
+
+def getRadius():
+  return getN('Provide radius', True)
+
+def getCircleArea(radius):
+  return math.pi * pow(radius, 2)
+
+# print(getCircleArea(getRadius()))
+
+# 10. Skapa en rekursiv funktion fakultet(n) som beräknar n!.
+
+def factorial(n):
+  if n < 1:
+    raise ValueError('It is not possible to count factorial of a not positive number')
+
+  if n == 1:
+    return 1
+  
+  return n * factorial(n-1)
+
+print(factorial(3))
