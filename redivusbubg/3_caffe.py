@@ -28,94 +28,94 @@
 coffeeKey = 'Kaffe'
 teaKey = 'Te'
 cakeKey = 'Kaka'
+
 articleKey = 'article'
 amountKey = 'amount'
+
 costKey = 'cost'
 itemsKey = 'items'
 
 currency = 'kr'
-#used to stop ordering
+# used to stop ordering
 stopArticle = 0
-articles = {
+productArticles = {
   coffeeKey: 1,
   teaKey: 2,
   cakeKey: 3,
 }
+
 prices = {
   coffeeKey: 30,
-  teaKey: 50,
+  teaKey: 25,
   cakeKey: 45,
 }
 
-def getNameByArticle(article):
-  for dish, art in articles.items():
-    if article == art:
-      return dish
+def getNameByArticle(searchArticle):
+  for dishName, article in productArticles.items():
+    if searchArticle == article:
+      return dishName
   return False
 
-#requests a number from user. make sure that it is possible to use value as a number
+# requests a number from user. make sure that it is possible to use the value as a number
 def getNumber(message):
   while True:
     inp = input(f'{message} ')
 
     try:
       return int(inp)
-    
     except:
-      print(f'Ett tal behövs. {inp}  är inte ett tal. Försök igen')
+      print(f'Ett tal behövs. {inp} är inte ett tal. Försök igen.')
       continue
   
 
-def checkArticle(article):
-  return article in [stopArticle, *articles.values()]
-
-
-def checkAmount(value):
-  return value > 0
-
-# request a number and make sure the number is usable further.
-# for example request correct value that is more than 0
-def getSecureNumber(
-    checkFn,
+# request a number and make sure the number is valide.
+def getValidNumber(
+    validatorFn,
     requestMessage = 'Skriv ett tal',
-    errorMessage = 'fel värde. Försök igen'
+    errorMessage = 'Fel värde. Försök igen'
   ):
   while True:
     value = getNumber(requestMessage)
 
-    if not checkFn(value):
+    if not validatorFn(value):
       print(errorMessage)
       continue
 
     return value
 
+
+def articleValidator(article):
+  return article in [stopArticle, *productArticles.values()]
+
+def amountValidator(value):
+  return value > 0
+
 # print out the menu on the screen
 def showMenu():
   print('Meny')
-  for dish, article in articles.items():
-    print(f'{article} = {dish} ({prices[dish]} {currency})')
+  for name, article in productArticles.items():
+    print(f'{article} = {name} ({prices[name]} {currency})')
   print('\n')
   
 # requests a list of items, menu article and amount
+# uses stopArticle to stop ordering
 def getOrderItems():
   print('Välj rätter från menyn. Skriv gärna siffrorna')
   print(f'Skriv {stopArticle} om du är klar med beställningen')
   orderItems = []
 
   while True:
-    # item = requestMenuArticle()
-    item = getSecureNumber(
-      checkArticle,
+    item = getValidNumber(
+      articleValidator,
       'Vilket rätt du vill ha?',
       'Det finns inget rätt med denna artikel. Försök igen'
     )
     # 0 is stop article
     if item == stopArticle:
-      print('Din beställning har skapats \n')
       return orderItems
 
-    amount = getSecureNumber(
-      checkAmount,
+    amount = getValidNumber(
+      amountValidator,
       'Hur många?',
       'Antal kan inte vara mindre än 1. Försök igen.'
     )
@@ -125,18 +125,6 @@ def getOrderItems():
       amountKey: amount
     })
 
-
-def requestMenuArticle():
-  # 0 used as a stop article in order to stop order cycle
-  availableArticles = [stopArticle, *articles.values()]
-  while True:
-    article = getNumber('Vilket rätt du vill ha?')
-
-    if not article in availableArticles:
-      print(f'Det finns inget rätt med artikel {article}. Försök igen')
-      continue
-
-    return article
 
 def getOrderDescription(items):
   description = {
@@ -162,15 +150,20 @@ def getOrderDescription(items):
 
 def printReceipt(orderDescription):
   for dish, amount in orderDescription[itemsKey].items():
-    print(f'{amount}x {dish} - {prices[dish]} {currency}')
+    print(f'{amount}x {dish} - {prices[dish] * amount} {currency}')
   print('------------------------')
   print(f"Totalt: {orderDescription[costKey]}")
 
 def getOrder():
   showMenu()
-  orderDescription = getOrderDescription(
-    getOrderItems()
-  )
+  orderItems = getOrderItems()
+
+  if len(orderItems) == 0:
+    print('Inget beställt.')
+    return False
+  
+  print('Din beställning har skapats \n')
+  orderDescription = getOrderDescription(orderItems)
   printReceipt(orderDescription)
   return orderDescription
 
